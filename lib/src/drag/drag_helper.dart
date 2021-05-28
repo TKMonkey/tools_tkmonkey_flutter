@@ -12,7 +12,7 @@ class DragUtils {
     this.dissableDrag = false,
   });
 
-  /// Limit to slide in the widget or screen
+  /// Maximum slide in the widget or screen
   final double maxSlide;
 
   /// Edge minimum to start the drag
@@ -33,17 +33,20 @@ class DragUtils {
   /// Flag to indicate is possible to drag the widget
   bool canBeDragged = false;
 
+  /// When drag is start, evaluate if limit and edge is true with animationStatus
   void onDragStart(DragStartDetails details) {
     if (dissableDrag) return;
-    final bool isDragStartFromLeft = animationStatudisBySideLeft &&
+
+    final bool dragStartFromLeft = animationStatusBySideLeft &&
         details.localPosition.dx < minDragStartEdge;
 
-    final bool isDragFinishFromRight = animationStatudisBySideRight &&
+    final bool dragStartFromRight = animationStatusBySideRight &&
         details.localPosition.dx > maxDragStartEdge;
 
-    canBeDragged = isDragFinishFromRight || isDragStartFromLeft;
+    canBeDragged = dragStartFromRight || dragStartFromLeft;
   }
 
+  /// When drag is update, update the animationController value
   void onDragUpdate(DragUpdateDetails details) {
     if (dissableDrag) return;
 
@@ -53,6 +56,7 @@ class DragUtils {
     }
   }
 
+  /// When drag is end, if is necessary complete or dismiss the animation
   void onDragEnd(DragEndDetails details) {
     if (dissableDrag) return;
 
@@ -70,15 +74,15 @@ class DragUtils {
     }
   }
 
-  bool get animationStatudisBySideLeft =>
-      orientation == DragOrientation.LeftToRight
-          ? animationController.isCompleted
-          : animationController.isDismissed;
-
-  bool get animationStatudisBySideRight =>
+  bool get animationStatusBySideLeft =>
       orientation == DragOrientation.LeftToRight
           ? animationController.isDismissed
           : animationController.isCompleted;
+
+  bool get animationStatusBySideRight =>
+      orientation == DragOrientation.LeftToRight
+          ? animationController.isCompleted
+          : animationController.isDismissed;
 
   void close() => animationController.reverse();
 

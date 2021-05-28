@@ -1,3 +1,6 @@
-## [0.0.1] - TODO: Add release date.
+## [0.0.1] - First Release with drag helper
 
-* TODO: Describe initial release.
+* Create Drag helper
+* Create Drag orientation
+* First readme
+* Add example
