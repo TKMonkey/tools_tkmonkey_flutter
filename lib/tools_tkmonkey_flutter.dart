@@ -1,7 +1,4 @@
 library tools_tkmonkey_flutter;
 
-/// A Calculator.
-class Calculator {
-  /// Returns [value] plus 1.
-  int addOne(int value) => value + 1;
-}
+export 'src/drag/drag_helper.dart';
+export 'src/drag/drag_orientation.dart';
