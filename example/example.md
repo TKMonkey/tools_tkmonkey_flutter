@@ -28,10 +28,12 @@ GestureDetector(
 Basic Use:
 ```dart
 class CustomController extends TKMController with CloseFunction, OpenFunction {
-  @override
+  
+  void close() => closeFunction();
+
   void close() {
     print('Show me a custom close print');  
-    _stateMixin!.close();
+    openFunction();
   }
 }
  ```

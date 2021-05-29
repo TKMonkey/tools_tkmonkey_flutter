@@ -21,9 +21,9 @@ mixin TKMControllerMixin {
 
   void start() {
     if (animationController.status == AnimationStatus.completed) {
-      open();
+      animationController.reverse();
     } else if (animationController.status == AnimationStatus.dismissed) {
-      close();
+      animationController.forward();
     }
   }
 
