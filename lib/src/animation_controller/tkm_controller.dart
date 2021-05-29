@@ -20,19 +20,18 @@ import 'tkm_controller_mixin.dart';
 const _message =
     'TKMController must be attached to a Widget with AnimationControllerMixin';
 
-abstract class TKMController<S extends TKMControllerMixin>
-    extends BaseControllerFunction {}
+abstract class TKMController extends BaseControllerFunction {}
 
 abstract class BaseControllerFunction<S extends TKMControllerMixin> {
-  S? _stateMixin;
+  S? stateMixin;
 
   /// Attached the state to this controller
   set addState(S state) {
-    _stateMixin = state;
+    stateMixin = state;
   }
 
   /// Determine if the state with AnimationControllerMixin is attached to an instance
-  bool get isAttached => _stateMixin != null;
+  bool get isAttached => stateMixin != null;
 }
 
 mixin CloseFunction implements BaseControllerFunction {
@@ -40,14 +39,14 @@ mixin CloseFunction implements BaseControllerFunction {
   /// Clossed is animationController.value == 1.0
   void close() {
     assert(isAttached, _message);
-    _stateMixin!.open();
+    stateMixin!.open();
   }
 
   /// Returns whether or not the panel is 'closed'.
   /// Clossed is animationController.value == 0.0
   bool get isClosed {
     assert(isAttached, _message);
-    return _stateMixin!.isAnimationClosed;
+    return stateMixin!.isAnimationClosed;
   }
 }
 
@@ -56,22 +55,22 @@ mixin OpenFunction implements BaseControllerFunction {
   /// Clossed is animationController.value == 0.0
   void open() {
     assert(isAttached, _message);
-    _stateMixin!.open();
+    stateMixin!.open();
   }
 
   /// Returns whether or not the animation is 'open'.
   /// Clossed is animationController.value == 1.0
   bool get isOpen {
     assert(isAttached, _message);
-    return _stateMixin!.isAnimationOpen;
+    return stateMixin!.isAnimationOpen;
   }
 }
 
 mixin StartFunction implements BaseControllerFunction {
   /// Run animation and decide if execute open or close
   void start() {
-    assert(isAttached, _message);
-    _stateMixin!.start();
+    // assert(isAttached, _message);
+    // stateMixin.start();
   }
 }
 
@@ -80,7 +79,7 @@ mixin GetPositionFunction implements BaseControllerFunction {
   /// Decimal between 0.0 and 1.0
   double get getPosition {
     assert(isAttached, _message);
-    return _stateMixin!.getPosition;
+    return stateMixin!.getPosition;
   }
 }
 
@@ -90,7 +89,7 @@ mixin SetPositionFunction implements BaseControllerFunction {
   set setPosition(double value) {
     assert(isAttached, _message);
     assert(0.0 <= value && value <= 1.0);
-    _stateMixin!.setPosition = value;
+    stateMixin!.setPosition = value;
   }
 }
 
@@ -106,6 +105,6 @@ mixin AnimateToPositionFunction implements BaseControllerFunction {
   }) {
     assert(isAttached, _message);
     assert(0.0 <= value && value <= 1.0);
-    _stateMixin!.animateToPosition(value, duration: duration, curve: curve);
+    stateMixin!.animateToPosition(value, duration: duration, curve: curve);
   }
 }
