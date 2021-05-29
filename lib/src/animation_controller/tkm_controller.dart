@@ -11,6 +11,14 @@ import 'tkm_controller_mixin.dart';
 /// add the mixin you need to add new functionalities to the custom controller
 /// With this the `TKMController` try to reproduce https://en.wikipedia.org/wiki/Interface_segregation_principle
 ///
+/// After that call the mixin Function with your own functions
+///
+/// ```dart
+/// class CustomController extends TKMController with OpenFunction {
+///   void open() => openFunction();
+/// }
+/// ```
+///
 /// The State class of custom widget should implements the `Mixin` [AnimationControllerMixin]
 /// After that in the `initState` method from `StatefulWidget` call the `addState`
 /// to attached the state to the controller
@@ -23,15 +31,15 @@ const _message =
 abstract class TKMController extends BaseControllerFunction {}
 
 abstract class BaseControllerFunction<S extends TKMControllerMixin> {
-  S? stateMixin;
+  S? _stateMixin;
 
   /// Attached the state to this controller
   set addState(S state) {
-    stateMixin = state;
+    _stateMixin = state;
   }
 
   /// Determine if the state with AnimationControllerMixin is attached to an instance
-  bool get isAttached => stateMixin != null;
+  bool get isAttached => _stateMixin != null;
 }
 
 mixin CloseFunction implements BaseControllerFunction {
@@ -39,14 +47,14 @@ mixin CloseFunction implements BaseControllerFunction {
   /// Clossed is animationController.value == 1.0
   void closeFunction() {
     assert(isAttached, _message);
-    stateMixin!.close();
+    _stateMixin!.close();
   }
 
   /// Returns whether or not the panel is 'closed'.
   /// Clossed is animationController.value == 0.0
   bool get isClosedFunction {
     assert(isAttached, _message);
-    return stateMixin!.isAnimationClosed;
+    return _stateMixin!.isAnimationClosed;
   }
 }
 
@@ -55,22 +63,22 @@ mixin OpenFunction implements BaseControllerFunction {
   /// Clossed is animationController.value == 0.0
   void openFunction() {
     assert(isAttached, _message);
-    stateMixin!.open();
+    _stateMixin!.open();
   }
 
   /// Returns whether or not the animation is 'open'.
   /// Clossed is animationController.value == 1.0
   bool get isOpenFunction {
     assert(isAttached, _message);
-    return stateMixin!.isAnimationOpen;
+    return _stateMixin!.isAnimationOpen;
   }
 }
 
 mixin StartFunction implements BaseControllerFunction {
   /// Run animation and decide if execute open or close
   void startFunction() {
-    // assert(isAttached, _message);
-    // stateMixin.start();
+    assert(isAttached, _message);
+    _stateMixin!.start();
   }
 }
 
@@ -79,7 +87,7 @@ mixin GetPositionFunction implements BaseControllerFunction {
   /// Decimal between 0.0 and 1.0
   double get getPositionFunction {
     assert(isAttached, _message);
-    return stateMixin!.getPosition;
+    return _stateMixin!.getPosition;
   }
 }
 
@@ -89,7 +97,7 @@ mixin SetPositionFunction implements BaseControllerFunction {
   set setPositionFunction(double value) {
     assert(isAttached, _message);
     assert(0.0 <= value && value <= 1.0);
-    stateMixin!.setPosition = value;
+    _stateMixin!.setPosition = value;
   }
 }
 
@@ -105,6 +113,6 @@ mixin AnimateToPositionFunction implements BaseControllerFunction {
   }) {
     assert(isAttached, _message);
     assert(0.0 <= value && value <= 1.0);
-    stateMixin!.animateToPosition(value, duration: duration, curve: curve);
+    _stateMixin!.animateToPosition(value, duration: duration, curve: curve);
   }
 }
