@@ -26,6 +26,8 @@ GestureDetector(
 ## TKMController
 
 Basic Use:
+
+Wrap the mixin functions in the CustomController functions
 ```dart
 class CustomController extends TKMController with CloseFunction, OpenFunction {
   
