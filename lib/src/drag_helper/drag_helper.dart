@@ -2,13 +2,38 @@ import 'package:flutter/material.dart';
 
 import 'drag_orientation.dart';
 
+/// {@template drag_helper}
+/// Class to create a drag helper.
+/// This class use flags to manipulate the drag in Widgets
+///
+/// The most important is define the [DragDirection] to understand the drag direction
+/// in the widget (Where start and end)
+///
+/// ```dart
+/// DragUtils(
+///   animationController: animationController,
+///   maxSlide: 255,
+///   maxDragStartEdge: MediaQuery.of(context).size.width - 255,
+///   minDragStartEdge: 60,
+///   dissableDrag: true,
+///   orientation: DragOrientation.RigthtToLeft
+/// );
+/// ```
+///
+/// After define DragUtils use a `GestureDectector` to override
+///  - onHorizontalDragStart: dragUtils.onDragStart,
+///  - onHorizontalDragUpdate: dragUtils.onDragUpdate,
+///  - onHorizontalDragEnd: dragUtils.onDragEnd,
+///
+/// {@endtemplate}
+
 class DragUtils {
   DragUtils({
     required this.animationController,
     required this.maxSlide,
     required this.maxDragStartEdge,
     required this.minDragStartEdge,
-    required this.orientation,
+    required this.direction,
     this.dissableDrag = false,
   });
 
@@ -27,8 +52,8 @@ class DragUtils {
   /// If the user want to disable drag in some cases
   final bool dissableDrag;
 
-  ///This argument is to indicate the direction of start to end
-  final DragOrientation orientation;
+  ///This argument is to indicate the drag direction where start tand end
+  final DragDirection direction;
 
   /// Flag to indicate is possible to drag the widget
   bool canBeDragged = false;
@@ -74,19 +99,17 @@ class DragUtils {
     }
   }
 
-  bool get animationStatusBySideLeft =>
-      orientation == DragOrientation.LeftToRight
-          ? animationController.isDismissed
-          : animationController.isCompleted;
+  bool get animationStatusBySideLeft => direction == DragDirection.LeftToRight
+      ? animationController.isDismissed
+      : animationController.isCompleted;
 
-  bool get animationStatusBySideRight =>
-      orientation == DragOrientation.LeftToRight
-          ? animationController.isCompleted
-          : animationController.isDismissed;
+  bool get animationStatusBySideRight => direction == DragDirection.LeftToRight
+      ? animationController.isCompleted
+      : animationController.isDismissed;
 
   void close() => animationController.reverse();
 
   void open() => animationController.forward();
 
-  double get delta => orientation == DragOrientation.LeftToRight ? 1.0 : -1.0;
+  double get delta => direction == DragDirection.LeftToRight ? 1.0 : -1.0;
 }

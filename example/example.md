@@ -1,4 +1,6 @@
-Basic Use
+## DragHelper
+
+Basic Use:
 ```dart
 DragUtils(
     animationController: animationController,
@@ -9,3 +11,13 @@ DragUtils(
     orientation: DragOrientation.RigthtToLeft
   );
  ```
+
+ After define the `DragUtils`
+ ```dart
+GestureDetector(
+  onHorizontalDragStart: dragUtils.onDragStart,
+  onHorizontalDragUpdate: dragUtils.onDragUpdate,
+  onHorizontalDragEnd: dragUtils.onDragEnd,
+  child: ...,
+);
+```
