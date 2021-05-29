@@ -25,11 +25,12 @@ import 'tkm_controller_mixin.dart';
 ///
 /// {@endtemplate}
 
-const _message =
-    'TKMController must be attached to a Widget with AnimationControllerMixin';
-
 abstract class TKMController extends BaseControllerFunction {}
 
+/// {@template tkm_base_controller}
+/// Base class for implementing `TKMController` and give access to mixin to state
+///
+/// {@endtemplate}
 abstract class BaseControllerFunction<S extends TKMControllerMixin> {
   S? _stateMixin;
 
@@ -42,6 +43,10 @@ abstract class BaseControllerFunction<S extends TKMControllerMixin> {
   bool get isAttached => _stateMixin != null;
 }
 
+/// {@template tkm_close_function}
+/// Mixin to implementing the `close` function
+///
+/// {@endtemplate}
 mixin CloseFunction implements BaseControllerFunction {
   /// Start animation to close
   /// Clossed is animationController.value == 1.0
@@ -58,8 +63,12 @@ mixin CloseFunction implements BaseControllerFunction {
   }
 }
 
+/// {@template tkm_open_function}
+/// Mixin to implementing the `open` function
+///
+/// {@endtemplate}
 mixin OpenFunction implements BaseControllerFunction {
-  /// Start animation to close
+  /// Start animation to open
   /// Clossed is animationController.value == 0.0
   void openFunction() {
     assert(isAttached, _message);
@@ -74,6 +83,10 @@ mixin OpenFunction implements BaseControllerFunction {
   }
 }
 
+/// {@template tkm_start_function}
+/// Mixin to implementing the `start` function
+///
+/// {@endtemplate}
 mixin StartFunction implements BaseControllerFunction {
   /// Run animation and decide if execute open or close
   void startFunction() {
@@ -82,6 +95,10 @@ mixin StartFunction implements BaseControllerFunction {
   }
 }
 
+/// {@template tkm_get_position_function}
+/// Mixin to implementing the `getPosition` function
+///
+/// {@endtemplate}
 mixin GetPositionFunction implements BaseControllerFunction {
   /// Gets the current animationController position.
   /// Decimal between 0.0 and 1.0
@@ -91,6 +108,10 @@ mixin GetPositionFunction implements BaseControllerFunction {
   }
 }
 
+/// {@template tkm_set_position_function}
+/// Mixin to implementing the `setPosition` function
+///
+/// {@endtemplate}
 mixin SetPositionFunction implements BaseControllerFunction {
   /// Sets the animationController position (without animation).
   /// The value must between 0.0 and 1.0
@@ -101,6 +122,10 @@ mixin SetPositionFunction implements BaseControllerFunction {
   }
 }
 
+/// {@template tkm_animate_to_position_function}
+/// Mixin to implementing the `animateToPositionFunction` function
+///
+/// {@endtemplate}
 mixin AnimateToPositionFunction implements BaseControllerFunction {
   /// Animates the widget position to the value.
   /// The value must between 0.0 and 1.0
@@ -116,3 +141,6 @@ mixin AnimateToPositionFunction implements BaseControllerFunction {
     _stateMixin!.animateToPosition(value, duration: duration, curve: curve);
   }
 }
+
+const _message =
+    'TKMController must be attached to a Widget with AnimationControllerMixin';
