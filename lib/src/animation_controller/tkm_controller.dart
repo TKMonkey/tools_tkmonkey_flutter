@@ -37,14 +37,14 @@ abstract class BaseControllerFunction<S extends TKMControllerMixin> {
 mixin CloseFunction implements BaseControllerFunction {
   /// Start animation to close
   /// Clossed is animationController.value == 1.0
-  void close() {
+  void closeFunction() {
     assert(isAttached, _message);
-    stateMixin!.open();
+    stateMixin!.close();
   }
 
   /// Returns whether or not the panel is 'closed'.
   /// Clossed is animationController.value == 0.0
-  bool get isClosed {
+  bool get isClosedFunction {
     assert(isAttached, _message);
     return stateMixin!.isAnimationClosed;
   }
@@ -53,14 +53,14 @@ mixin CloseFunction implements BaseControllerFunction {
 mixin OpenFunction implements BaseControllerFunction {
   /// Start animation to close
   /// Clossed is animationController.value == 0.0
-  void open() {
+  void openFunction() {
     assert(isAttached, _message);
     stateMixin!.open();
   }
 
   /// Returns whether or not the animation is 'open'.
   /// Clossed is animationController.value == 1.0
-  bool get isOpen {
+  bool get isOpenFunction {
     assert(isAttached, _message);
     return stateMixin!.isAnimationOpen;
   }
@@ -77,7 +77,7 @@ mixin StartFunction implements BaseControllerFunction {
 mixin GetPositionFunction implements BaseControllerFunction {
   /// Gets the current animationController position.
   /// Decimal between 0.0 and 1.0
-  double get getPosition {
+  double get getPositionFunction {
     assert(isAttached, _message);
     return stateMixin!.getPosition;
   }
@@ -86,7 +86,7 @@ mixin GetPositionFunction implements BaseControllerFunction {
 mixin SetPositionFunction implements BaseControllerFunction {
   /// Sets the animationController position (without animation).
   /// The value must between 0.0 and 1.0
-  set setPosition(double value) {
+  set setPositionFunction(double value) {
     assert(isAttached, _message);
     assert(0.0 <= value && value <= 1.0);
     stateMixin!.setPosition = value;
@@ -98,7 +98,7 @@ mixin AnimateToPositionFunction implements BaseControllerFunction {
   /// The value must between 0.0 and 1.0
   /// (optional) duration specifies the time for the animation to complete
   /// (optional) curve specifies the easing behavior of the animation.
-  void animateToPosition(
+  void animateToPositionFunction(
     double value, {
     Duration? duration,
     Curve curve = Curves.linear,
