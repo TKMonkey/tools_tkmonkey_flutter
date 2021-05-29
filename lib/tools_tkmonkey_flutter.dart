@@ -1,4 +1,4 @@
-library tools_tkmonkey_flutter;
+library tools_tkmonkey;
 
 export 'src/animation_controller/tkm_controller.dart';
 export 'src/animation_controller/tkm_controller_mixin.dart';
