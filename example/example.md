@@ -2,7 +2,7 @@
 
 Basic Use:
 ```dart
-DragUtils(
+TKMDragHelper(
     animationController: animationController,
     maxSlide: 255,
     maxDragStartEdge: MediaQuery.of(context).size.width - 255,
@@ -12,12 +12,46 @@ DragUtils(
   );
  ```
 
- After define the `DragUtils`
+ After define the `TKMDragHelper`
  ```dart
 GestureDetector(
-  onHorizontalDragStart: dragUtils.onDragStart,
-  onHorizontalDragUpdate: dragUtils.onDragUpdate,
-  onHorizontalDragEnd: dragUtils.onDragEnd,
+  onHorizontalDragStart: dragHelper.onDragStart,
+  onHorizontalDragUpdate: dragHelper.onDragUpdate,
+  onHorizontalDragEnd: dragHelper.onDragEnd,
   child: ...,
 );
+```
+
+
+## TKMController
+
+Basic Use:
+```dart
+class CustomController extends TKMController {
+  @override
+  void close() {
+    print('Show me a custom close print');  
+    _stateMixin!.close();
+  }
+}
+ ```
+
+ After define the `CustomController`
+ Initialize animationController from `Mixin` and attached the state
+
+ ```dart
+class _CustomState extends State<CustomWidget>
+    with SingleTickerProviderStateMixin, AnimationControllerMixin {
+  @override
+    void initState() {
+      super.initState();
+
+      animationController = AnimationController(
+        vsync: this,
+        duration: settings.duration,
+      );
+
+      widget.controller?.addState = this;
+    }
+}
 ```

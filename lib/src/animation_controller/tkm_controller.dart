@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'animation_controller_mixin.dart';
+import 'tkm_controller_mixin.dart';
 
 /// {@template tkm_controller}
 ///
@@ -13,11 +13,11 @@ import 'animation_controller_mixin.dart';
 /// to attached the state to the controller
 ///
 /// {@endtemplate}
-abstract class TKMController<State extends AnimationControllerMixin> {
-  State? _stateMixin;
+abstract class TKMController<S extends TKMControllerMixin> {
+  S? _stateMixin;
 
   /// Attached the state to this controller
-  set addState(State state) {
+  set addState(S state) {
     _stateMixin = state;
   }
 
@@ -59,7 +59,7 @@ abstract class TKMController<State extends AnimationControllerMixin> {
   }
 
   /// Gets the current animationController position.
-  /// as a decimal between 0.0 and 1.0
+  /// Decimal between 0.0 and 1.0
   double get getPosition {
     assert(isAttached, _message);
     return _stateMixin!.getPosition;

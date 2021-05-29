@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'drag_orientation.dart';
 
-/// {@template drag_helper}
+/// {@template tkm_drag_helper}
 /// Class to create a drag helper.
 /// This class use flags to manipulate the drag in Widgets
 ///
@@ -10,7 +10,7 @@ import 'drag_orientation.dart';
 /// in the widget (Where start and end)
 ///
 /// ```dart
-/// DragUtils(
+/// TKMDragHelper(
 ///   animationController: animationController,
 ///   maxSlide: 255,
 ///   maxDragStartEdge: MediaQuery.of(context).size.width - 255,
@@ -27,8 +27,8 @@ import 'drag_orientation.dart';
 ///
 /// {@endtemplate}
 
-class DragUtils {
-  DragUtils({
+class TKMDragHelper {
+  TKMDragHelper({
     required this.animationController,
     required this.maxSlide,
     required this.maxDragStartEdge,

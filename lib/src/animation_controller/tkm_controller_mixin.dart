@@ -1,17 +1,18 @@
 import 'package:flutter/animation.dart';
 import 'package:flutter/material.dart';
 
-/// {@template tkm_controller}
+/// {@template tkm_controller_mixin}
 ///
-/// Mixin to connect the `State` in the `StatefulWidget` with a controller
+/// Mixin to connect the `State` in the `StatefulWidget` with a [TKMController]
+///
 /// With this Mixin the `StatefulWidget` have some implements methods
 /// the [TKMController] child could access these methods to handle the animation behavior
 ///
-/// For this controller `OpenState` is when animationController.value == 1.0
-/// For this controller `CloseState` is when animationController.value == 0.0
+/// `OpenState` is when animationController.value == 1.0
+/// `CloseState` is when animationController.value == 0.0
 ///
 /// {@endtemplate}
-mixin AnimationControllerMixin {
+mixin TKMControllerMixin {
   late AnimationController animationController;
 
   void open() => animationController.forward();
