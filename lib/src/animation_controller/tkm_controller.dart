@@ -68,7 +68,7 @@ mixin OpenFunction implements BaseControllerFunction {
 
 mixin StartFunction implements BaseControllerFunction {
   /// Run animation and decide if execute open or close
-  void start() {
+  void startFunction() {
     // assert(isAttached, _message);
     // stateMixin.start();
   }
