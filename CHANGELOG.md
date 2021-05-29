@@ -2,5 +2,6 @@
 
 * Create Drag helper
 * Create Drag orientation
+* Create Custom Animation Controller
 * First readme
 * Add example

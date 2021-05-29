@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'drag_orientation.dart';
+import 'drag_direction.dart';
 
 /// {@template tkm_drag_helper}
 /// Class to create a drag helper.

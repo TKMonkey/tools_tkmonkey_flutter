@@ -69,7 +69,7 @@ abstract class TKMController<S extends TKMControllerMixin> {
   /// The value must between 0.0 and 1.0
   /// (optional) duration specifies the time for the animation to complete
   /// (optional) curve specifies the easing behavior of the animation.
-  void animatePanelToPosition(
+  void animateToPosition(
     double value, {
     Duration? duration,
     Curve curve = Curves.linear,
@@ -81,7 +81,7 @@ abstract class TKMController<S extends TKMControllerMixin> {
 
   /// Sets the animationController position (without animation).
   /// The value must between 0.0 and 1.0
-  set panelPosition(double value) {
+  set setPosition(double value) {
     assert(isAttached, _message);
     assert(0.0 <= value && value <= 1.0);
     _stateMixin!.setPosition = value;
