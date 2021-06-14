@@ -54,13 +54,6 @@ mixin ReverseFunction implements BaseControllerFunction {
     assert(isAttached, _message);
     _stateMixin!.reverse(from: from);
   }
-
-  /// Returns whether or not the animation has 'reverse'.
-  /// Hasrevered is animationController.value == 1.0
-  bool get hasReversedFunction {
-    assert(isAttached, _message);
-    return _stateMixin!.hasAnimatedReversed;
-  }
 }
 
 /// {@template tkm_forward_function}
@@ -74,13 +67,6 @@ mixin ForwardFunction implements BaseControllerFunction {
     assert(isAttached, _message);
     _stateMixin!.forward(from: from);
   }
-
-  /// Returns whether or not the animation has 'forward'.
-  /// Hasforward is animationController.value == 0.0
-  bool get hasForwadFunction {
-    assert(isAttached, _message);
-    return _stateMixin!.hasAnimatedForward;
-  }
 }
 
 /// {@template tkm_run_function}
@@ -92,6 +78,24 @@ mixin RunFunction implements BaseControllerFunction {
   void runFunction() {
     assert(isAttached, _message);
     _stateMixin!.run();
+  }
+}
+
+/// {@template tkm_state_function}
+/// Mixin to implementing the `state` function
+///
+/// {@endtemplate}
+mixin StateAnimationFunction implements BaseControllerFunction {
+  /// Returns whether or not the animation is 'dismissed'.
+  bool get isAnimationDismissed {
+    assert(isAttached, _message);
+    return _stateMixin!.isAnimationDismissed;
+  }
+
+  /// Returns whether or not the animation is 'completed'.
+  bool get isAnimatedCompleted {
+    assert(isAttached, _message);
+    return _stateMixin!.isAnimatedCompleted;
   }
 }
 
