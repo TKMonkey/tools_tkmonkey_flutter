@@ -95,7 +95,7 @@ mixin StateAnimationFunction implements BaseControllerFunction {
   /// Returns whether or not the animation is 'completed'.
   bool get isAnimationCompleted {
     assert(isAttached, _message);
-    return _stateMixin!.isAnimatedCompleted;
+    return _stateMixin!.isAnimationCompleted;
   }
 }
 
