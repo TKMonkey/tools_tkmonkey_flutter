@@ -20,7 +20,7 @@ mixin TKMControllerMixin {
   void reverse({double? from}) => animationController.reverse(from: from);
 
   void run() {
-    if (isAnimatedCompleted) {
+    if (isAnimationCompleted) {
       reverse();
     } else if (isAnimationDismissed) {
       forward();
@@ -43,7 +43,7 @@ mixin TKMControllerMixin {
 
   bool get isAnimationDismissed =>
       animationController.status == AnimationStatus.dismissed;
-  bool get isAnimatedCompleted =>
+  bool get isAnimationCompleted =>
       animationController.status == AnimationStatus.completed;
   bool get isAnimating => animationController.isAnimating;
   double get getPosition => animationController.value;

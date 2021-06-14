@@ -19,7 +19,7 @@ import 'tkm_controller_mixin.dart';
 /// }
 /// ```
 ///
-/// The State class of custom widget should implements the `Mixin` [AnimationControllerMixin]
+/// The State class of custom widget should implements the `Mixin` [TKMControllerMixin]
 /// After that in the `initState` method from `StatefulWidget` call the `addState`
 /// to attached the state to the controller
 ///
@@ -95,7 +95,7 @@ mixin StateAnimationFunction implements BaseControllerFunction {
   /// Returns whether or not the animation is 'completed'.
   bool get isAnimationCompleted {
     assert(isAttached, _message);
-    return _stateMixin!.isAnimatedCompleted;
+    return _stateMixin!.isAnimationCompleted;
   }
 }
 
