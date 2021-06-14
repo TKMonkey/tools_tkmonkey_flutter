@@ -29,13 +29,13 @@ Basic Use:
 
 Wrap the mixin functions in the CustomController functions
 ```dart
-class CustomController extends TKMController with CloseFunction, OpenFunction {
+class CustomController extends TKMController with ForwardFunction, ReverseFunction {
   
-  void close() => closeFunction();
+  void close() => reverseFunction();
 
-  void close() {
-    print('Show me a custom close print');  
-    openFunction();
+  void open() {
+    print('Show me a custom open print');  
+    forwardFunction();
   }
 }
  ```

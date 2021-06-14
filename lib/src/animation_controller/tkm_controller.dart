@@ -14,8 +14,8 @@ import 'tkm_controller_mixin.dart';
 /// After that call the mixin Function with your own functions
 ///
 /// ```dart
-/// class CustomController extends TKMController with OpenFunction {
-///   void open() => openFunction();
+/// class CustomController extends TKMController with ForwardFunction {
+///   void open() => forwardFunction();
 /// }
 /// ```
 ///
@@ -43,55 +43,55 @@ abstract class BaseControllerFunction<S extends TKMControllerMixin> {
   bool get isAttached => _stateMixin != null;
 }
 
-/// {@template tkm_close_function}
-/// Mixin to implementing the `close` function
+/// {@template tkm_reverse_function}
+/// Mixin to implementing the `reverse` function
 ///
 /// {@endtemplate}
-mixin CloseFunction implements BaseControllerFunction {
-  /// Start animation to close
-  /// Clossed is animationController.value == 1.0
-  void closeFunction() {
+mixin ReverseFunction implements BaseControllerFunction {
+  /// Start animation to reverse
+  /// Reversed is animationController.value == 1.0
+  void reverseFunction({double? from}) {
     assert(isAttached, _message);
-    _stateMixin!.close();
+    _stateMixin!.reverse(from: from);
   }
 
-  /// Returns whether or not the panel is 'closed'.
-  /// Clossed is animationController.value == 0.0
-  bool get isClosedFunction {
+  /// Returns whether or not the animation has 'reverse'.
+  /// Hasrevered is animationController.value == 1.0
+  bool get hasReversedFunction {
     assert(isAttached, _message);
-    return _stateMixin!.isAnimationClosed;
+    return _stateMixin!.hasAnimatedReversed;
   }
 }
 
-/// {@template tkm_open_function}
-/// Mixin to implementing the `open` function
+/// {@template tkm_forward_function}
+/// Mixin to implementing the `forward` function
 ///
 /// {@endtemplate}
-mixin OpenFunction implements BaseControllerFunction {
-  /// Start animation to open
-  /// Clossed is animationController.value == 0.0
-  void openFunction() {
+mixin ForwardFunction implements BaseControllerFunction {
+  /// Start animation to forward
+  /// Forward is animationController.value == 0.0
+  void forwardFunction({double? from}) {
     assert(isAttached, _message);
-    _stateMixin!.open();
+    _stateMixin!.forward(from: from);
   }
 
-  /// Returns whether or not the animation is 'open'.
-  /// Clossed is animationController.value == 1.0
-  bool get isOpenFunction {
+  /// Returns whether or not the animation has 'forward'.
+  /// Hasforward is animationController.value == 0.0
+  bool get hasForwadFunction {
     assert(isAttached, _message);
-    return _stateMixin!.isAnimationOpen;
+    return _stateMixin!.hasAnimatedForward;
   }
 }
 
-/// {@template tkm_start_function}
-/// Mixin to implementing the `start` function
+/// {@template tkm_run_function}
+/// Mixin to implementing the `run` function
 ///
 /// {@endtemplate}
-mixin StartFunction implements BaseControllerFunction {
-  /// Run animation and decide if execute open or close
-  void startFunction() {
+mixin RunFunction implements BaseControllerFunction {
+  /// Run animation and decide if execute forward or reverse
+  void runFunction() {
     assert(isAttached, _message);
-    _stateMixin!.start();
+    _stateMixin!.run();
   }
 }
 

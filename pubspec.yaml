@@ -1,6 +1,6 @@
 name: tools_tkmonkey
 description: A simple lib with tools, we use this tools in our libraries.
-version: 0.0.1
+version: 0.0.2
 homepage: https://github.com/TKMonkey/tools_tkmonkey
 
 environment:

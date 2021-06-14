@@ -8,22 +8,22 @@ import 'package:flutter/material.dart';
 /// With this Mixin the `StatefulWidget` have some implements methods
 /// the [TKMController] child could access these methods to handle the animation behavior
 ///
-/// `OpenState` is when animationController.value == 1.0
-/// `CloseState` is when animationController.value == 0.0
+/// `ForwardState` is when animationController.value == 0.0
+/// `ReverseState` is when animationController.value == 1.0
 ///
 /// {@endtemplate}
 mixin TKMControllerMixin {
   late AnimationController animationController;
 
-  void open() => animationController.forward();
+  void forward({double? from}) => animationController.forward(from: from);
 
-  void close() => animationController.reverse();
+  void reverse({double? from}) => animationController.reverse(from: from);
 
-  void start() {
+  void run() {
     if (animationController.status == AnimationStatus.completed) {
-      animationController.reverse();
+      reverse();
     } else if (animationController.status == AnimationStatus.dismissed) {
-      animationController.forward();
+      forward();
     }
   }
 
@@ -41,8 +41,8 @@ mixin TKMControllerMixin {
     animationController.value = value;
   }
 
-  bool get isAnimationOpen => animationController.value == 1.0;
-  bool get isAnimationClosed => animationController.value == 0.0;
+  bool get hasAnimatedForward => animationController.value == 0.0;
+  bool get hasAnimatedReversed => animationController.value == 1.0;
   bool get isAnimating => animationController.isAnimating;
   double get getPosition => animationController.value;
 }
